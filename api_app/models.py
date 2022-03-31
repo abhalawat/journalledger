@@ -31,8 +31,8 @@ class INRTransaction(models.Model):
     debitAcc = models.ForeignKey(Book, on_delete=models.CASCADE, default=1, related_name='debitAcc')
     creditAcc = models.ForeignKey(Book, on_delete=models.CASCADE, default=1, related_name='creditAcc')
     description = models.CharField(max_length=20, default='purchase')
-    dr = models.FloatField(default=0.0)
-    cr = models.FloatField(default=0.0)
+    debit = models.FloatField(default=0.0)
+    credit = models.FloatField(default=0.0)
     dateTime = models.DateTimeField(auto_now_add=True, null=True)
 
 

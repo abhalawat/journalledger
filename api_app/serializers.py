@@ -21,14 +21,24 @@ class WalletSerializer(serializers.ModelSerializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = INRTransaction
-        dr = serializers.FloatField()
-        cr = serializers.FloatField()
 
-        @staticmethod
-        def validate(data):
-            dr = data.get('dr')
-            cr = data.get('cr')
-            if dr != cr:
-                raise serializers.ValidationError('credit and debit should be equal')
+        fields = ['user', 'debitAcc', 'creditAcc', 'description', 'debit', 'credit', 'dateTime']
 
-        fields = ['user', 'debitAcc', 'creditAcc', 'description', 'dr', 'cr', 'dateTime']
+
+class DebitCreditSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    debit = serializers.FloatField()
+    credit = serializers.FloatField()
+
+    def validate(self, data):
+        debit = data.get('debit')
+        credit = data.get('credit')
+        if debit != credit:
+            raise serializers.ValidationError('credit and debit should be equal')
+
+        return debit, credit
