@@ -20,7 +20,7 @@ post_save.connect(user_did_save, sender=User)
 
 
 class Book(models.Model):
-    book_name = models.CharField(max_length=20,default="Bank")
+    book_name = models.CharField(max_length=20, default="Bank")
 
     def __str__(self):
         return self.book_name
@@ -37,7 +37,7 @@ class INRTransaction(models.Model):
 
 
 class BookEntries(models.Model):
-    book_name = models.CharField(max_length=20,default="Bank")
+    book_name = models.CharField(max_length=20, default="Bank")
     dateTime = models.DateTimeField(auto_now_add=True, null=True)
     description = models.CharField(max_length=20, default='purchase')
     debit = models.IntegerField(default=0.0)
